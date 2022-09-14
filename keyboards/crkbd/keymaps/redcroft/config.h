@@ -43,9 +43,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_EFFECT_ALTERNATING
     #define RGBLIGHT_EFFECT_TWINKLE
     #define RGBLIGHT_LIMIT_VAL 120
-    #define RGBLIGHT_HUE_STEP 10
-    #define RGBLIGHT_SAT_STEP 17
-    #define RGBLIGHT_VAL_STEP 17
+    #define RGBLIGHT_HUE_STEP 5
+    #define RGBLIGHT_SAT_STEP 15
+    #define RGBLIGHT_VAL_STEP 25
+    #define RGBLIGHT_DEFAULT_HUE 80
+    #define RGBLIGHT_DEFAULT_SAT 255
+    #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_BREATHING
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
