@@ -1,7 +1,7 @@
-MOUSEKEY_ENABLE     = no     # Mouse keys
-RGBLIGHT_ENABLE     = yes    # Enable WS2812 RGB underlight.
-VIA_ENABLE          = no     # Enable VIA
-OLED_DRIVER_ENABLE  = yes
-LTO_ENABLE          = yes
-EXTRAKEY_ENABLE     = yes
-BOOTLOADER          = atmel-dfu
+MOUSEKEY_ENABLE = no     # Mouse keys
+RGBLIGHT_ENABLE = yes    # Enable WS2812 RGB underlight.
+VIA_ENABLE      = yes
+OLED_ENABLE     = yes
+OLED_DRIVER     = SSD1306
+LTO_ENABLE      = yes
+CONVERT_TO      = kb2040
