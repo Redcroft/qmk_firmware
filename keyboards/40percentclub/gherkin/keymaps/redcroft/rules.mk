@@ -1,0 +1,13 @@
+AUDIO_ENABLE     = no     # Audio output on port C6
+BOOTMAGIC_ENABLE = yes    # Enable bootmagic Lite
+BACKLIGHT_ENABLE = no     # Enable keyboard backlighting
+CONSOLE_ENABLE   = yes    # QMK Console for debug
+COMMAND_ENABLE   = yes    # Commands for debug and configuration
+EXTRAKEY_ENABLE  = yes    # Audio control and system control
+LTO_ENABLE       = yes    # improve performance/size
+MIDI_ENABLE      = no     # MIDI support
+NKRO_ENABLE      = no     # USB Nkey rollover
+RGBLIGHT_ENABLE  = no     # Enable RGB underlighting
+TAB_DANCE_ENABLE = no     # Enable tap-dance
+UNICODE_ENABLE   = no     # Unicode char support
+VIA_ENABLE       = yes    # configure keyboard via usevia.app
