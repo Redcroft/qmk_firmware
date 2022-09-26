@@ -1,4 +1,6 @@
-/* Copyright 2019 Erovia
+/* Copyright 2021 Colin Lam (Ploopy Corporation)
+ * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
+ * Copyright 2019 Sunjun Kim
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,4 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "rev3.h"
+
+#pragma once
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8
