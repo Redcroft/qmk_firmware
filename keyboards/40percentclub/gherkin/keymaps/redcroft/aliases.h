@@ -1,0 +1,10 @@
+#define ALT_K  LALT_T(KC_K)
+#define CTL_A  LCTL_T(KC_A)
+#define CTL_S  LCTL_T(KC_S)
+#define ENT_Z  TD_ENT_Z
+#define F1_SPC LT(1, KC_SPC)
+#define F2_X   LT(2, KC_X)
+#define F3_DEL LT(2, KC_DEL)
+#define GUI_J  LGUI_T(KC_J)
+#define KC_LCA LCA_T(KC_NO)
+#define SFT_Q  LSFT_T(KC_Q)
