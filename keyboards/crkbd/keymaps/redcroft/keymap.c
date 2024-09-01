@@ -72,6 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   //|-------+-------+-------+-------+-------+-------|          |-------+-------+-------+-------+-------+-------|
 			                                  KC_LALT, KC_SPC, SUPL,     MO(4), KC_BSPC, KC_LGUI \
 			                               //`-----------------------'  `----------------------'
+                           ),
   [4] = LAYOUT_split_3x6_3(
 			   //,-----------------------------------------------.          ,-----------------------------------------------.
 			      KC_GRV, KC_EXLM,KC_AT,  KC_HASH,KC_DLR, KC_PERC,           KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_EQL,\
