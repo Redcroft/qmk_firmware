@@ -80,16 +80,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
    * | Ctl |  A  |  R  |  S  |  T  |  D  |  M  |  N  |  E  |  I  |  O  |  -  |
    * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-   * | Sft |  Z  |  X  |  C  |  D  |  V  |  K  |  H  |  ,  |  .  |  /  |  \  |
+   * | Sft |  Z  |  X  |  C  |  D  |  V  |  K  |  H  |  ,  |  .  |  /  |Sent |
    * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-   * | Ctl |Scrth| Alt | Sup | Spc | Lwr | Rse | Bsp | Sup | PDn | PUp |Sent |
+   * | Ctl |Scrth| Sup | Alt | Spc | Lwr | Rse | Bsp | Sup | PDn | PUp |Sent |
    * `-----------------------------------------------------------------------'
    */
   [_COLEMAK] = LAYOUT_ortho_4x12(
                                  KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_QUOT,
                                  ESC_CTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_MINUS,
-                                 KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_BSLS,
-                                 KC_LCTL, SCRATCH, KC_LALT, KC_LGUI, KC_SPC,  LOWER,   RAISE,   KC_BSPC, KC_LGUI, KC_PGDN, KC_PGUP, SC_SENT
+                                 KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, SC_SENT,
+                                 KC_LCTL, SCRATCH, KC_LGUI, KC_LALT, KC_SPC,  LOWER,   RAISE,   KC_BSPC, KC_LGUI, KC_PGDN, KC_PGUP, SC_SENT
                                  ),
 
   /* Qwerty
