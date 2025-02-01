@@ -61,7 +61,7 @@ const uint16_t modifiers[] = {
   KC_LGUI,
   KC_RGUI,
   ESC_CTL
-  SC_ENT,
+  SC_SENT,
   LOWER,
   RAISE
 };
