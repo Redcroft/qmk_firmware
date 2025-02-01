@@ -16,6 +16,8 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "timer.h"
+#include "stdlib.h"
 
 
 enum plaid_layers {
@@ -73,6 +75,10 @@ const uint16_t modifiers[] = {
 #define LEDMODE_BLINKIN 3 //blinkinlights - % chance toggle on keypress
 #define LEDMODE_KEY 4 //On with any keypress, off with key release
 #define LEDMODE_ENTER 5 // On with enter key
+
+// Timer for blinking LEDs
+static uint16_t blink_timer = 0;
+static uint16_t blink_delay = 500;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -228,6 +234,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
+void matrix_scan_user(void) {
+  if (led_config.red_mode == LEDMODE_BLINKIN) {
+    if (timer_elapsed(blink_timer) > blink_delay) {
+      gpio_write_pin(LED_RED, !gpio_read_pin(LED_RED));
+      blink_delay = (rand() % 1000) + 50;
+      blink_timer = timer_read();
+    }
+  }
+  if (led_config.green_mode == LEDMODE_BLINKIN) {
+    if (timer_elapsed(blink_timer) > blink_delay) {
+      gpio_write_pin(LED_GREEN, !gpio_read_pin(LED_GREEN));
+      blink_delay = (rand() % 1000) + 50;
+      blink_timer = timer_read();
+    }
+  }
+}
+
 void led_keypress_update(uint8_t led, uint8_t led_mode, uint16_t keycode, keyrecord_t *record) {
   switch (led_mode) {
   case LEDMODE_MODS:
@@ -238,18 +261,6 @@ void led_keypress_update(uint8_t led, uint8_t led_mode, uint16_t keycode, keyrec
         }
         else {
           gpio_write_pin_low(led);
-        }
-      }
-    }
-    break;
-  case LEDMODE_BLINKIN:
-    if (record->event.pressed) {
-      if(rand() % 2 == 1) {
-        if(rand() % 2 == 0) {
-          gpio_write_pin_low(led);
-        }
-        else {
-          gpio_write_pin_high(led);
         }
       }
     }
@@ -272,7 +283,6 @@ void led_keypress_update(uint8_t led, uint8_t led_mode, uint16_t keycode, keyrec
       gpio_write_pin_low(led);
     }
     break;
-
   }
 }
 
