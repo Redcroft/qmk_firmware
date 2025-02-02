@@ -238,14 +238,14 @@ void matrix_scan_user(void) {
   if (led_config.red_mode == LEDMODE_BLINKIN) {
     if (timer_elapsed(blink_timer) > blink_delay) {
       gpio_write_pin(LED_RED, !gpio_read_pin(LED_RED));
-      blink_delay = (rand() % 1000) + 50;
+      blink_delay = (rand() % 600) + 40;
       blink_timer = timer_read();
     }
   }
   if (led_config.green_mode == LEDMODE_BLINKIN) {
     if (timer_elapsed(blink_timer) > blink_delay) {
       gpio_write_pin(LED_GREEN, !gpio_read_pin(LED_GREEN));
-      blink_delay = (rand() % 1000) + 50;
+      blink_delay = (rand() % 600) + 40;
       blink_timer = timer_read();
     }
   }
