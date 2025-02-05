@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Dvorak
    * ,-----------------------------------------------------------------------.
-   * |     |  "  |  ,  |  .  |  P  |  Y  |  F  |  G  |  C  |  R  |  L  |     |
+   * |     |  "  |  ,  |  .  |  P  |  Y  |  F  |  G  |  C  |  R  |  L  |  /  |
    * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
    * |     |  A  |  O  |  E  |  U  |  I  |  D  |  H  |  T  |  N  |  S  |     |
    * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT_ortho_4x12(
-                                _______, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    _______,
+                                _______, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_SLSH,
                                 _______, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    _______,
                                 _______, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    _______,
                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
