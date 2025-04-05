@@ -50,7 +50,7 @@ enum plaid_keycodes {
 #define COLEMAK PDF(_COLEMAK)
 #define DVORAK PDF(_DVORAK)
 
-#define ESC_CTL LCTL_T(KC_ESC)
+// #define KC_LCTL LCTL_T(KC_ESC)
 
 // array of keys considered modifiers for led purposes
 const uint16_t modifiers[] = {
@@ -62,7 +62,7 @@ const uint16_t modifiers[] = {
   KC_RSFT,
   KC_LGUI,
   KC_RGUI,
-  ESC_CTL,
+  KC_LCTL,
   SC_SENT,
   LOWER,
   RAISE
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_COLEMAK] = LAYOUT_ortho_4x12(
                                  KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_QUOT,
-                                 ESC_CTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_MINUS,
+                                 KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_MINUS,
                                  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, SC_SENT,
                                  KC_LCTL, SCRATCH, KC_LGUI, KC_LALT, KC_SPC,  LOWER,   RAISE,   KC_BSPC, KC_LGUI, KC_PGDN, KC_PGUP, SC_SENT
                                  ),
