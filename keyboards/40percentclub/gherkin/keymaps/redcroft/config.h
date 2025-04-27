@@ -4,6 +4,8 @@
 #define BOOTMAGIC_LITE_COLUMN 0
 
 
+#define MAX_DEFERRED_EXECUTORS 10
+
 // Behaviors That Can Be Configured
 
 
@@ -12,8 +14,6 @@
 
 #define PERMISSIVE_HOLD
        // makes tap and hold keys trigger the hold if another key is pressed before releasing, even if it hasn't hit the TAPPING_TERM
-#define IGNORE_MOD_TAP_INTERRUPT
-        // makes it possible to do rolling combos (zx) with keys that convert to other keys on hold, by enforcing the TAPPING_TERM for both keys.
 
 #define TAPPING_FORCE_HOLD
         // makes it possible to use a dual role key as modifier shortly after having been tapped (see Hold after tap)

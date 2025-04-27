@@ -2,6 +2,7 @@
 #include "tap_dance.h"
 #include "aliases.h"
 
+
 enum gherkin_layers {
   _COLEMAK,
   _QWERTY,
@@ -10,6 +11,51 @@ enum gherkin_layers {
   _RAISE,
   _ADJUST
 };
+
+enum custom_keycodes {
+  SMTD_KEYCODES_BEGIN = SAFE_RANGE,
+  CKC_A, // reads as C(ustom) + KC_A, but you may give any name here
+  CKC_R,
+  CKC_S,
+  CKC_T,
+  CKC_N,
+  CKC_E,
+  CKC_I,
+  CKC_O,
+  DKC_A,
+  DKC_O,
+  DKC_E,
+  DKC_U,
+  DKC_H,
+  DKC_T,
+  DKC_N,
+  DKC_S,
+  SMTD_KEYCODES_END,
+};
+
+#include "sm_td/sm_td.h"
+
+void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+    switch (keycode) {
+        SMTD_MT(CKC_A, KC_A, KC_LEFT_GUI)
+        SMTD_MT(CKC_R, KC_R, KC_LEFT_ALT)
+        SMTD_MT(CKC_S, KC_S, KC_LEFT_CTRL)
+        SMTD_MT(CKC_T, KC_T, KC_LSFT)
+	SMTD_MT(CKC_N, KC_N, KC_LSFT)
+        SMTD_MT(CKC_E, KC_E, KC_LEFT_CTRL)
+        SMTD_MT(CKC_I, KC_I, KC_LEFT_ALT)
+        SMTD_MT(CKC_O, KC_O, KC_LEFT_GUI)
+
+	SMTD_MT(DKC_A, KC_A, KC_LEFT_GUI)
+        SMTD_MT(DKC_O, KC_O, KC_LEFT_ALT)
+        SMTD_MT(DKC_E, KC_E, KC_LEFT_CTRL)
+        SMTD_MT(DKC_U, KC_U, KC_LSFT)
+	SMTD_MT(DKC_H, KC_H, KC_LSFT)
+        SMTD_MT(DKC_T, KC_T, KC_LEFT_CTRL)
+        SMTD_MT(DKC_N, KC_N, KC_LEFT_ALT)
+        SMTD_MT(DKC_S, KC_S, KC_LEFT_GUI)
+    }
+}
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
@@ -29,13 +75,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
    * |  ⌃ A  |  ⌥ O  |  ⇧ E  |  ⌘ U  |   I   |   D   |  ⌘ H  |  ⇧ T  |  ⌥ N  |  ⌃ S  |
    * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |   Q   |   J   |   K   | ↓ Spc |  ↑ X  |   B   |   M   |   W   |   V   |  ⏎ Z  |
+   * |   Q   |   J   |   K   | ↓ Spc |  ↑ X  |   B   |   M   |   W   |   V   |  ⏎ Z |
    * `-------------------------------------------------------------------------------'
    */
   [_DVORAK] = L310(
                    KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,
-                   KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,
-                   KC_Q,    KC_J,    KC_K,    F1_SPC,  KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    ENT_Z
+                   DKC_A,   DKC_O,   DKC_E,   DKC_U,   KC_I,    KC_D,    DKC_H,   DKC_T,   DKC_N,   DKC_S,
+                   KC_Q,    KC_J,    KC_K,    F1_SPC,  F2_X,    KC_B,    KC_M,    KC_W,    KC_V,    ENT_Z
                    ),
 
   /* Colemak
@@ -47,10 +93,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |   X   |   C   |   D   | ↓ Spc |  ↑ V  |   Z   |   K   |   H   |   ,   |   ⏎   |
    * `-------------------------------------------------------------------------------'
    */
-  [_Colemak] = L310(
+  [_COLEMAK] = L310(
                     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
-                    CTL_A,   KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    CTL_O,
-                    SFT_X,   GUI_C,   ALT_D,   F1_SPC,  F2_V,    KC_Z,    F3_K,    KC_H,    KC_COMM, ENT_DOT
+                    CKC_A,   CKC_R,   CKC_S,   CKC_T,   KC_G,    KC_M,    CKC_N,   CKC_E,   CKC_I,   CKC_O,
+                    KC_X,    KC_C,    KC_D,    F1_SPC,  F2_V,    KC_Z,    KC_K,    KC_H,    KC_COMM, ENT_DOT
                     ),
 
   /* Qwerty
@@ -65,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = L310(
                    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_BSPC, KC_O,
                    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_MINS,
-                   KC_LSFT, KC_Z,    ALT_X,   F1_SPC,  F2_C,    KC_V,    F3_B,    KC_N,    KC_M,    KC_BSPC
+                   KC_LSFT, KC_Z,    ALT_X,   F1_SPC,  F2_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_BSPC
                    ),
 
   /* Lower
@@ -114,3 +160,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                    )
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_smtd(keycode, record)) {
+    return false;
+  }
+  return true;
+}

@@ -25,3 +25,6 @@
 	path = lib/lvgl
 	url = https://github.com/qmk/lvgl.git
 	branch = release/v8.2
+[submodule "keyboards/40percentclub/gherkin/keymaps/redcroft/sm_td"]
+	path = keyboards/40percentclub/gherkin/keymaps/redcroft/sm_td
+	url = https://github.com/stasmarkin/sm_td

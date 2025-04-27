@@ -12,3 +12,5 @@ RGBLIGHT_ENABLE  = no        # Enable RGB underlighting
 TAP_DANCE_ENABLE = yes       # Enable tap-dance
 UNICODE_ENABLE   = no        # Unicode char support
 VIA_ENABLE       = no        # configure keyboard via usevia.app
+
+DEFERRED_EXEC_ENABLE = yes
