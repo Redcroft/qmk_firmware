@@ -28,3 +28,6 @@
 [submodule "keyboards/40percentclub/gherkin/keymaps/redcroft/sm_td"]
 	path = keyboards/40percentclub/gherkin/keymaps/redcroft/sm_td
 	url = https://github.com/stasmarkin/sm_td
+[submodule "modules/stasmarkin"]
+	path = modules/stasmarkin
+	url = https://github.com/stasmarkin/sm_td

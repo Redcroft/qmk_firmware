@@ -24,7 +24,7 @@
 
 #define QWERTY PDF(_QWERTY)
 #define COLEMAK PDF(_COLEMAK)
-#define DVORAK PDF(_DVORAK)
+#define GRAPHITE PDF(_GRAPHITE)
 
 #define ESC_CTL LCTL_T(KC_ESC)
 #define ALT_SPC LALT_T(KC_SPC)
@@ -34,7 +34,7 @@
 enum crkbd_layers {
   _COLEMAK,
   _QWERTY,
-  _DVORAK,
+  _GRAPHITE,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -81,21 +81,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				     _______, _______, _______,                       _______, _______, _______
 				     ),
 
-  /* Dvorak
+  /* Graphite
    * ,-----------------------------------.     .-----------------------------------.
-   * |     |  '  |  ,  |  .  |  P  |  Y  |     |  F  |  G  |  C  |  R  |  L  |  /  |
+   * |     |  B  |  L  |  D  |  W  |  Z  |     |  '  |  Y  |  O  |  U  |  J  |  ;  |
    * |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-   * |     |  A  |  O  |  E  |  U  |  I  |     |  D  |  H  |  T  |  N  |  S  |     |
+   * |     |  N  |  R  |  T  |  S  |  G  |     |  Y  |  H  |  A  |  E  |  I  |  ,  |
    * |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-   * |     |  ;  |  Q  |  J  |  K  |  X  |     |  B  |  M  |  W  |  V  |  Z  |     |
+   * |     |  Q  |  X  |  M  |  C  |  V  |     |  K  |  P  |  .  |  -  |  /  |     |
    * `-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----'
    *                   |     |     |     |     |     |     |     |
    *                   `-----------------'     `-----------------'
    */
-  [_DVORAK] = LAYOUT_split_3x6_3_ex2(
-				     _______, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    _______,     _______, KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_SLSH,
-				     _______, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    _______,     _______, KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    _______,
-				     _______, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,                          KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    _______,
+  [_GRAPHITE] = LAYOUT_split_3x6_3_ex2(
+				     _______, KC_B,    KC_L,    KC_D,    KC_W,    KC_Z,    _______,     _______, KC_QUOT, KC_Y,    KC_O,    KC_U,    KC_J,    KC_SCLN,
+				     _______, KC_N,    KC_R,    KC_T,    KC_S,    KC_G,    _______,     _______, KC_Y,    KC_H,    KC_A,    KC_E,    KC_I,    KC_COMM,
+				     _______, KC_Q,    KC_X,    KC_M,    KC_C,    KC_V,                          KC_K,    KC_P,    KC_DOT,  KC_MINS, KC_SLSH, _______,
 				     _______, _______, _______,                                                  _______, _______, _______
 				     ),
 
@@ -147,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                   `-----------------'     `-----------------'
    */
   [_ADJUST] = LAYOUT_split_3x6_3_ex2(
-				     _______, COLEMAK, QWERTY,  DVORAK,  _______, _______,   _______,     _______,   _______, EH_LEFT, EH_RGHT, _______, _______, QK_RBT,
+				     _______, COLEMAK, QWERTY,  GRAPHITE,_______, _______,   _______,     _______,   _______, EH_LEFT, EH_RGHT, _______, _______, QK_RBT,
 				     _______, _______, _______, _______, _______, _______,   _______,     _______,   _______, _______, _______, _______, _______, _______,
 				     _______, _______, _______, _______, _______, _______,                           _______, _______, _______, _______, _______, QK_BOOT,
 				     _______, _______, _______,          _______, _______, _______
