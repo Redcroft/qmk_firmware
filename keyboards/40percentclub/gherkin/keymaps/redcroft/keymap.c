@@ -1,164 +1,71 @@
 #include QMK_KEYBOARD_H
-#include "tap_dance.h"
-#include "aliases.h"
-
-
-enum gherkin_layers {
-  _COLEMAK,
-  _QWERTY,
-  _DVORAK,
-  _LOWER,
-  _RAISE,
-  _ADJUST
-};
+#include "sm_td.h"
 
 enum custom_keycodes {
-  SMTD_KEYCODES_BEGIN = SAFE_RANGE,
-  CKC_A, // reads as C(ustom) + KC_A, but you may give any name here
-  CKC_R,
-  CKC_S,
-  CKC_T,
-  CKC_N,
-  CKC_E,
-  CKC_I,
-  CKC_O,
-  DKC_A,
-  DKC_O,
-  DKC_E,
-  DKC_U,
-  DKC_H,
-  DKC_T,
-  DKC_N,
-  DKC_S,
-  SMTD_KEYCODES_END,
+  TD_N = SAFE_RANGE,
+  TD_R,
+  TD_T,
+  TD_S,
+  TD_H,
+  TD_A,
+  TD_E,
+  TD_I
 };
 
-#include "sm_td/sm_td.h"
+enum layers {
+  _GAL = 0,
+  _NUM,
+  _NAV
+};
 
-void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
-    switch (keycode) {
-        SMTD_MT(CKC_A, KC_A, KC_LEFT_GUI)
-        SMTD_MT(CKC_R, KC_R, KC_LEFT_ALT)
-        SMTD_MT(CKC_S, KC_S, KC_LEFT_CTRL)
-        SMTD_MT(CKC_T, KC_T, KC_LSFT)
-	SMTD_MT(CKC_N, KC_N, KC_LSFT)
-        SMTD_MT(CKC_E, KC_E, KC_LEFT_CTRL)
-        SMTD_MT(CKC_I, KC_I, KC_LEFT_ALT)
-        SMTD_MT(CKC_O, KC_O, KC_LEFT_GUI)
+smtd_resolution on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+  switch (keycode) {
+  case TD_N: SMTD_MT(KC_N, KC_LGUI);
+  case TD_R: SMTD_MT(KC_R, KC_LALT);
+  case TD_T: SMTD_MT(KC_T, KC_LCTL);
+  case TD_S: SMTD_MT(KC_S, KC_LSFT);
 
-	SMTD_MT(DKC_A, KC_A, KC_LEFT_GUI)
-        SMTD_MT(DKC_O, KC_O, KC_LEFT_ALT)
-        SMTD_MT(DKC_E, KC_E, KC_LEFT_CTRL)
-        SMTD_MT(DKC_U, KC_U, KC_LSFT)
-	SMTD_MT(DKC_H, KC_H, KC_LSFT)
-        SMTD_MT(DKC_T, KC_T, KC_LEFT_CTRL)
-        SMTD_MT(DKC_N, KC_N, KC_LEFT_ALT)
-        SMTD_MT(DKC_S, KC_S, KC_LEFT_GUI)
-    }
+  case TD_H: SMTD_MT(KC_H, KC_RSFT);
+  case TD_A: SMTD_MT(KC_A, KC_RCTL);
+  case TD_E: SMTD_MT(KC_E, KC_RALT);
+  case TD_I: SMTD_MT(KC_I, KC_RGUI);
+  }
+  return SMTD_RESOLUTION_UNHANDLED;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
+const uint16_t PROGMEM spc_combo[] = {KC_W, KC_Z, COMBO_END};
+const uint16_t PROGMEM del_combo[] = {KC_Z, KC_K, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_B, KC_L, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_X, KC_Q, COMBO_END};
+const uint16_t PROGMEM ent_combo[] = {KC_SLSH, KC_DOT, COMBO_END};
 
-#define DVORAK DF(0)
-#define COLEMAK DF(1)
-#define QWERTY DF(2)
-
-#define L310 LAYOUT_ortho_3x10
+combo_t key_combos[] = {
+    COMBO(spc_combo, KC_SPC),
+    COMBO(del_combo, KC_BSPC), // Backspace is usually more useful than Del
+    COMBO(tab_combo, KC_TAB),
+    COMBO(esc_combo, KC_ESC),
+    COMBO(ent_combo, KC_ENT)
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  /* Dvorak
-   * ,-------------------------------------------------------------------------------.
-   * |   '   |   ,   |   .   |   P   |   Y   |   F   |   G   |   C   |   R   |   L   |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |  ⌃ A  |  ⌥ O  |  ⇧ E  |  ⌘ U  |   I   |   D   |  ⌘ H  |  ⇧ T  |  ⌥ N  |  ⌃ S  |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |   Q   |   J   |   K   | ↓ Spc |  ↑ X  |   B   |   M   |   W   |   V   |  ⏎ Z |
-   * `-------------------------------------------------------------------------------'
-   */
-  [_DVORAK] = L310(
-                   KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,
-                   DKC_A,   DKC_O,   DKC_E,   DKC_U,   KC_I,    KC_D,    DKC_H,   DKC_T,   DKC_N,   DKC_S,
-                   KC_Q,    KC_J,    KC_K,    F1_SPC,  F2_X,    KC_B,    KC_M,    KC_W,    KC_V,    ENT_Z
-                   ),
+  [_GAL] = LAYOUT_ortho_3x10(
+			     KC_B,   KC_L,   KC_D,   KC_C,   KC_V,      KC_J,   KC_Y,   KC_O,   KC_U,   KC_COMM,
+			     TD_N,   TD_R,   TD_T,   TD_S,   KC_G,      KC_P,   TD_H,   TD_A,   TD_E,   TD_I,
+			     KC_X,   KC_Q,   KC_M,   KC_W,   KC_Z,      KC_K,   KC_F,   KC_QUOT, KC_SLSH, KC_DOT
+			     ),
 
-  /* Colemak
-   * ,-------------------------------------------------------------------------------.
-   * |   Q   |   W   |   F   |   P   |   B   |   J   |   L   |   U   |   Y   |   '   |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |  ⌃ A  |  ⌥ R  |  ⇧ S  |  ⌘ T  |   G   |   M   |  ⌘ N  |  ⇧ E  |  ⌥ I  |  ⌃ O  |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |   X   |   C   |   D   | ↓ Spc |  ↑ V  |   Z   |   K   |   H   |   ,   |   ⏎   |
-   * `-------------------------------------------------------------------------------'
-   */
-  [_COLEMAK] = L310(
-                    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
-                    CKC_A,   CKC_R,   CKC_S,   CKC_T,   KC_G,    KC_M,    CKC_N,   CKC_E,   CKC_I,   CKC_O,
-                    KC_X,    KC_C,    KC_D,    F1_SPC,  F2_V,    KC_Z,    KC_K,    KC_H,    KC_COMM, ENT_DOT
-                    ),
+  [_NUM] = LAYOUT_ortho_3x10(
+			     KC_1,    KC_2,    KC_3,    KC_4,    KC_5,      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+			     KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
+			     KC_GRV,  KC_TILD, KC_UNDS, KC_MINS, KC_PLUS,   KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, KC_PIPE
+			     ),
 
-  /* Qwerty
-   * ,-------------------------------------------------------------------------------.
-   * |   Q   |   W   |   E   |   R   |   T   |   Y   |   U   |   I   |   O   |   P   |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |  ⌃ A  |  ⌥ S  |  ⇧ D  |  ⌘ F  |   G   |   H   |  ⌘ J  |  ⇧ K  |  ⌥ L  |  ⌃ -  |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |   Z   |   X   |   C   | ↓ Spc |  ↑ V  |   B   |   N   |   M   |   ,   |   ⏎   |
-   * `-------------------------------------------------------------------------------'
-   */
-  [_QWERTY] = L310(
-                   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_BSPC, KC_O,
-                   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_MINS,
-                   KC_LSFT, KC_Z,    ALT_X,   F1_SPC,  F2_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_BSPC
-                   ),
-
-  /* Lower
-   * ,-------------------------------------------------------------------------------.
-   * |  Tab  |       |       |       |       |       |       |       |       |       |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       |       |       |       |       |       |       |       |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       | _____ |       |       |   ⌫   |       |       |       |
-   * `-------------------------------------------------------------------------------'
-   */
-  [_LOWER] = L310(
-                  KC_TAB,  KC_GRV,  KC_LBRC, KC_RBRC, KC_EQL,  KC_SCLN, KC_END,  KC_UP,   KC_HOME, KC_BSPC,
-                  KC_LCTL, KC_BSLS, KC_SLSH, KC_ESC,  _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_MINS,
-                  KC_LSFT, KC_LGUI, KC_LALT, _______, KC_DEL,  _______, KC_PGDN, _______, KC_PGUP, KC_ENT
-                  ),
-
-  /* Raise
-   * ,-------------------------------------------------------------------------------.
-   * |       |       |       |       |       |       |       |       |       |       |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       |       |       |       |       |       |       |       |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       |       |       |       | _____ |       |       |       |
-   * `-------------------------------------------------------------------------------'
-   */
-  [_RAISE] = L310(
-                  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-                  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
-                  KC_LSFT, KC_LGUI, KC_LALT, _______, _______, KC_LCA,  KC_COMM, KC_DOT,  KC_F11,  KC_F12
-                  ),
-
-  /* Adjust
-   * ,-------------------------------------------------------------------------------.
-   * |       |       |       |       |       |       |       |       |       |       |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       |       |       |       |       |       |       |       |
-   * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
-   * |       |       |       | _____ |       |       | _____ |       |       |       |
-   * `-------------------------------------------------------------------------------'
-   */
-  [_ADJUST] = L310(
-                   KC_ESC,  DVORAK,  COLEMAK, QWERTY,  _______, _______, _______, KC_UP,   _______, KC_BSPC,
-                   KC_LCTL, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,
-                   KC_LSFT, KC_LGUI, KC_LALT, _______, _______, _______, _______, _______, _______, QK_BOOT
-                   )
-
+  [_NAV] = LAYOUT_ortho_3x10(
+			     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_HOME, KC_UP,   KC_END,  KC_PGUP,
+			     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
+			     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_DEL,  KC_TRNS, KC_TRNS, KC_TRNS
+			     )
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

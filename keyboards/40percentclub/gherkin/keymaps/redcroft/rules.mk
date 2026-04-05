@@ -1,16 +1,15 @@
-AUDIO_ENABLE     = no        # Audio output on port C6
-BACKLIGHT_ENABLE = no        # Enable keyboard backlighting
-BOOTLOADER       = atmel-dfu # Elite-C
-BOOTMAGIC_ENABLE = yes       # Enable bootmagic Lite
-CONSOLE_ENABLE   = no        # QMK Console for debug
-COMMAND_ENABLE   = no        # Commands for debug and configuration
-EXTRAKEY_ENABLE  = yes       # Audio control and system control
-LTO_ENABLE       = no        # improve performance/size
-MIDI_ENABLE      = no        # MIDI support
-NKRO_ENABLE      = no        # USB Nkey rollover
-RGBLIGHT_ENABLE  = no        # Enable RGB underlighting
-TAP_DANCE_ENABLE = yes       # Enable tap-dance
-UNICODE_ENABLE   = no        # Unicode char support
-VIA_ENABLE       = no        # configure keyboard via usevia.app
+MCU = atmega32u4
+BOOTLOADER = atmel-dfu
 
-DEFERRED_EXEC_ENABLE = yes
+# Enable the features we discussed
+COMBO_ENABLE = yes
+TAP_DANCE_ENABLE = no  # Use 'no' if you are strictly using sm_td to save space
+LTO_ENABLE = yes       # IMPORTANT: Shrinks the firmware size so it fits on the chip
+
+# Standard Gherkin/Pro Micro features
+BOOTMAGIC_ENABLE = lite
+MOUSEKEY_ENABLE = no   # Disable to save memory
+EXTRAKEY_ENABLE = yes  # Required for Media keys/Volume
+CONSOLE_ENABLE = no    # Disable to save memory
+COMMAND_ENABLE = no    # Disable to save memory
+NKRO_ENABLE = no       # Usually not needed for a 30-key board

@@ -1,0 +1,6 @@
+{
+    "keyboard": "40percentclub/gherkin",
+    "keymap": "default",
+    "layout": "LAYOUT_ortho_3x10",
+    "modules": ["stasmarkin/sm_td"],
+}

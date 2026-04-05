@@ -46,8 +46,8 @@ const uint8_t RGBLED_TWINKLE_INTERVALS[] PROGMEM = {50, 25};
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Colemak
-   * ,-----------------------------------.-----|     |-----.-----------------------------------.
-   * | Tab |  Q  |  W  |  F  |  P  |  B  |     |     |     |  J  |  L  |  U  |  Y  |  ;  |  '  |
+   * ,-----------------------------------.                 .-----------------------------------.
+   * | Tab |  Q  |  W  |  F  |  P  |  B  |                 |  J  |  L  |  U  |  Y  |  ;  |  '  |
    * |-----+-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----+-----|
    * | Ctl |  A  |  R  |  S  |  T  |  G  |     |     |     |  M  |  N  |  E  |  I  |  O  |  -  |
    * |-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----|
@@ -57,20 +57,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                   `-----------------'                 `-----------------'
    */
   [_COLEMAK] = LAYOUT_split_3x6_3_ex2(
-				      KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,  RM_NEXT,   RM_HUEU,   KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_QUOT,
-				      KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,  RM_PREV,   RM_HUED,   KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_MNS,
+				      KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,  KC_VOLU,     KC_BRIU, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_QUOT,
+				      KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,  KC_VOLD,     KC_BRID, KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_MNS,
 				      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                        KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, SC_SENT,
-				      KC_LALT, KC_SPC,  MO(3),                       MO(4),   KC_BSPC, KC_LGUI
+								KC_LALT, KC_SPC,  MO(3),                        MO(4),   KC_BSPC, KC_LGUI
 				      ),
 
   /* Qwerty
-   * ,-----------------------------------.-----|     |-----.-----------------------------------.
-   * |     |  Q  |  W  |  E  |  R  |  T  |     |     |     |  Y  |  U  |  I  |  O  |  P  |     |
+   * ,-----------------------------------.                 .-----------------------------------.
+   * |     |  Q  |  W  |  E  |  R  |  T  |                 |  Y  |  U  |  I  |  O  |  P  |     |
    * |-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----|
    * |     |  A  |  S  |  D  |  F  |  G  |     |     |     |  H  |  J  |  K  |  L  |  ;  |     |
    * |-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----|
-   * |     |  Z  |  X  |  C  |  V  |  B  |                 |  N  |  M  |  ,  |  .  |  /  |     |
-   * `-----+-----+-----+-----+-----+-----|                 |-----+-----+-----+-----+-----+-----'
+   * |     |  Z  |  X  |  C  |  V  |  B  |     |     |     |  N  |  M  |  ,  |  .  |  /  |     |
+   * `-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----'
    *                   |     |     |     |                 |     |     |     |
    *                   `-----------------'                 `-----------------'
    */
@@ -82,15 +82,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				     ),
 
   /* Graphite
-   * ,-----------------------------------.     .-----------------------------------.
-   * |     |  B  |  L  |  D  |  W  |  Z  |     |  '  |  Y  |  O  |  U  |  J  |  ;  |
-   * |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-   * |     |  N  |  R  |  T  |  S  |  G  |     |  Y  |  H  |  A  |  E  |  I  |  ,  |
-   * |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-   * |     |  Q  |  X  |  M  |  C  |  V  |     |  K  |  P  |  .  |  -  |  /  |     |
-   * `-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----'
-   *                   |     |     |     |     |     |     |     |
-   *                   `-----------------'     `-----------------'
+   * ,-----------------------------------.                 .-----------------------------------.
+   * |     |  B  |  L  |  D  |  W  |  Z  |                 |  '  |  Y  |  O  |  U  |  J  |  ;  |
+   * |-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----|
+   * |     |  N  |  R  |  T  |  S  |  G  |     |     |     |  Y  |  H  |  A  |  E  |  I  |  ,  |
+   * |-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----|
+   * |     |  Q  |  X  |  M  |  C  |  V  |     |     |     |  K  |  P  |  .  |  -  |  /  |     |
+   * `-----+-----+-----+-----+-----+-----|-----|     |-----|-----+-----+-----+-----+-----+-----'
+   *                   |     |     |     |                 |     |     |     |
+   *                   `-----------------'                 `-----------------'
    */
   [_GRAPHITE] = LAYOUT_split_3x6_3_ex2(
 				     _______, KC_B,    KC_L,    KC_D,    KC_W,    KC_Z,    _______,     _______, KC_QUOT, KC_Y,    KC_O,    KC_U,    KC_J,    KC_SCLN,
@@ -129,9 +129,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                   `-----------------'     `-----------------'
    */
   [_RAISE] = LAYOUT_split_3x6_3_ex2(
-				    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   _______,     _______,           KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_EQL,
-				    _______, RM_TOGG, RM_PREV, RM_NEXT, RM_VALU, DF(0),   _______,     _______,             DF(2),   KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RCTL,
-				    _______, RM_HUED, RM_SPDD, RM_SPDU, RM_VALD, DF(1),            KC_DEL,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
+				    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, RM_NEXT,     RM_HUEU, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_EQL,
+				    _______, RM_TOGG, RM_PREV, RM_NEXT, RM_VALU, DF(0),   RM_PREV,     RM_HUED, DF(2),   KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RCTL,
+				    _______, RM_HUED, RM_SPDD, RM_SPDU, RM_VALD, DF(1),                         KC_DEL,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
 				    _______, _______, _______,          _______, _______, _______
 				    ),
 
