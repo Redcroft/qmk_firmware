@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
    * |     | RGB | <RGB| RGB>| Val+| Cmk |     | Dvk | Lft | Dwn |  Up | Rgt | Ctl |
    * |-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----|
-   * |     | Hue+| Spd-| Spd+| Val-| Qwr |     | Del | Hme | Pdn | Pup | End |     |
+   * |     | Hue+| Spd-| Spd+| Val-| Qwr |     | Del | Hme | Pdn | Pup | End | Ret |
    * `-----+-----+-----+-----+-----+-----|     |-----+-----+-----+-----+-----+-----'
    *                   |     |     |     |     |     |     |     |
    *                   `-----------------'     `-----------------'
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT_split_3x6_3_ex2(
 				    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, RM_NEXT,     RM_HUEU, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_EQL,
 				    _______, RM_TOGG, RM_PREV, RM_NEXT, RM_VALU, DF(0),   RM_PREV,     RM_HUED, DF(2),   KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RCTL,
-				    _______, RM_HUED, RM_SPDD, RM_SPDU, RM_VALD, DF(1),                         KC_DEL,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
+				    _______, RM_HUED, RM_SPDD, RM_SPDU, RM_VALD, DF(1),                         KC_DEL,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RETN,
 				    _______, _______, _______,          _______, _______, _______
 				    ),
 
